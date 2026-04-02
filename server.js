@@ -9,7 +9,7 @@ console.log('DATABASE_URL:', process.env.DATABASE_URL);
 
 // Datenbankverbindung – Railway setzt DATABASE_URL automatisch
 const pool = new Pool({
-  connectionString: process.env.DATABASE_URL,
+  connectionString: 'postgresql://postgres:fbZnjUXrXoPuMCjxtmimAymJmQfkuCRf@interchange.proxy.rlwy.net:43893/railway',
   ssl: { rejectUnauthorized: false }
 });
 
