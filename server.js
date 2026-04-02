@@ -8,7 +8,7 @@ const PORT = process.env.PORT || 3000;
 
 // Datenbankverbindung – Railway setzt DATABASE_URL automatisch
 const pool = new Pool({
-  connectionString: process.env.DATABASE_URL,
+  connectionString: process.env.DB_URL,
   ssl: { rejectUnauthorized: false }
 });
 
