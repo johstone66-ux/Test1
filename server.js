@@ -4,6 +4,7 @@ const path    = require('path');
 
 const app  = express();
 const PORT = process.env.PORT || 3000;
+console.log('DB_URL:', process.env.DB_URL);
 
 
 // Datenbankverbindung – Railway setzt DATABASE_URL automatisch
