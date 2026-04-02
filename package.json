@@ -1,0 +1,12 @@
+{
+  "name": "formular-app",
+  "version": "1.0.0",
+  "description": "Einfaches Formular mit Node.js/Express-Backend",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}

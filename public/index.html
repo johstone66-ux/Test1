@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Formular</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #f5f0e8;
+      --card: #fffdf8;
+      --ink: #1a1714;
+      --muted: #7a7063;
+      --accent: #c84b2f;
+      --accent-light: #f0ddd8;
+      --border: #ddd5c8;
+      --shadow: 0 2px 0 #c9bfb0, 0 8px 32px rgba(0,0,0,0.08);
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background-color: var(--bg);
+      background-image:
+        radial-gradient(ellipse at 20% 10%, #e8dfd0 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 90%, #e0d5c5 0%, transparent 50%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      box-shadow: var(--shadow);
+      padding: 3rem 3.5rem;
+      width: 100%;
+      max-width: 480px;
+      animation: rise 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+    }
+
+    @keyframes rise {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .eyebrow {
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.5rem;
+    }
+
+    h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 2.2rem;
+      color: var(--ink);
+      line-height: 1.15;
+      margin-bottom: 0.5rem;
+    }
+
+    .subtitle {
+      font-size: 0.875rem;
+      color: var(--muted);
+      margin-bottom: 2.5rem;
+      line-height: 1.6;
+    }
+
+    .divider {
+      width: 40px;
+      height: 2px;
+      background: var(--accent);
+      margin-bottom: 2.5rem;
+    }
+
+    .field {
+      margin-bottom: 1.5rem;
+      animation: rise 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+    }
+    .field:nth-child(1) { animation-delay: 0.1s; }
+    .field:nth-child(2) { animation-delay: 0.18s; }
+    .field:nth-child(3) { animation-delay: 0.26s; }
+
+    label {
+      display: block;
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.5rem;
+    }
+
+    input {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.95rem;
+      color: var(--ink);
+      transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+      outline: none;
+    }
+
+    input::placeholder { color: #b5aa9e; }
+
+    input:focus {
+      border-color: var(--accent);
+      background: #fff;
+      box-shadow: 0 0 0 3px var(--accent-light);
+    }
+
+    button {
+      margin-top: 0.75rem;
+      width: 100%;
+      padding: 0.9rem 1rem;
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      border-radius: 3px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.1s, box-shadow 0.2s;
+      box-shadow: 0 2px 0 #9e3621;
+    }
+
+    button:hover  { background: #b84028; }
+    button:active { transform: translateY(2px); box-shadow: none; }
+
+    #status {
+      margin-top: 1.25rem;
+      font-size: 0.85rem;
+      text-align: center;
+      min-height: 1.2em;
+      color: var(--muted);
+      transition: color 0.3s;
+    }
+    #status.ok  { color: #2d7a4f; }
+    #status.err { color: var(--accent); }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <p class="eyebrow">Dateneingabe</p>
+    <h1>Formular</h1>
+    <div class="divider"></div>
+    <p class="subtitle">Füllen Sie alle Felder aus und klicken Sie auf Absenden.<br>Die Daten werden serverseitig gespeichert.</p>
+
+    <div class="field">
+      <label for="feld1">Name</label>
+      <input id="feld1" type="text" placeholder="Ihr vollständiger Name" />
+    </div>
+    <div class="field">
+      <label for="feld2">E-Mail</label>
+      <input id="feld2" type="email" placeholder="name@beispiel.de" />
+    </div>
+    <div class="field">
+      <label for="feld3">Nachricht</label>
+      <input id="feld3" type="text" placeholder="Ihre Nachricht..." />
+    </div>
+
+    <button onclick="absenden()">Absenden →</button>
+    <p id="status"></p>
+  </div>
+
+  <script>
+    async function absenden() {
+      const status = document.getElementById('status');
+      const daten = {
+        name:      document.getElementById('feld1').value.trim(),
+        email:     document.getElementById('feld2').value.trim(),
+        nachricht: document.getElementById('feld3').value.trim(),
+      };
+
+      if (!daten.name || !daten.email || !daten.nachricht) {
+        status.textContent = 'Bitte alle Felder ausfüllen.';
+        status.className = 'err';
+        return;
+      }
+
+      try {
+        const res = await fetch('/absenden', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(daten),
+        });
+        if (res.ok) {
+          status.textContent = '✓ Daten wurden erfolgreich gespeichert.';
+          status.className = 'ok';
+          ['feld1','feld2','feld3'].forEach(id => document.getElementById(id).value = '');
+        } else {
+          throw new Error();
+        }
+      } catch {
+        status.textContent = '✗ Fehler beim Senden. Ist der Server erreichbar?';
+        status.className = 'err';
+      }
+    }
+  </script>
+</body>
+</html>
