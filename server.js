@@ -4,12 +4,11 @@ const path    = require('path');
 
 const app  = express();
 const PORT = process.env.PORT || 3000;
-console.log('DATABASE_URL:', process.env.DATABASE_URL);
 
 
 // Datenbankverbindung – Railway setzt DATABASE_URL automatisch
 const pool = new Pool({
-  connectionString: 'postgresql://postgres:fbZnjUXrXoPuMCjxtmimAymJmQfkuCRf@interchange.proxy.rlwy.net:43893/railway',
+  connectionString: process.env.DATABASE_URL,
   ssl: { rejectUnauthorized: false }
 });
 
